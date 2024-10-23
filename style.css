@@ -52,7 +52,7 @@ body {
 .content.show {
     display: block;
     opacity: 1;
-    transform: translateY(-30px);
+    transform: translateY(20px);
 }
 
 /* Стили для каждого элемента */
