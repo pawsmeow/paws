@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'ImpactCustom';
+    src: url('impact2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    overflow: hidden;
+    font-family: 'ImpactCustom';
+}
+
+.title {
+    font-family: 'Deadly Advance';
+    color: #ffffff;
+    font-size: 48px; /* Увеличен размер заголовка */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 1s ease-out;
+}
+
+/* Начальное состояние для контента */
+.content {
+    display: none;
+    position: relative;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.8rem; /* Увеличены отступы */
+    border-radius: 6px; /* Увеличен радиус границы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Когда активна анимация, элемент поднимается вверх */
+.content.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(-30px);
+}
+
+/* Стили для каждого элемента */
+.item {
+    margin: 6px 0; /* Увеличены отступы между элементами */
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов */
+    align-items: flex-start; /* Выровнять содержимое по левому краю */
+}
+
+/* Стили для текста */
+.text {
+    color: #fff;
+    font-size: 2.4rem; /* Увеличен размер текста */
+    margin-bottom: 6px; /* Отступ снизу от текста для пространства между текстом и полем ввода */
+}
+
+/* Стили для полей ввода */
+input[type="tel"] {
+    width: 100%;
+    max-width: 150px; /* Увеличена максимальная ширина поля */
+    padding: 3px; /* Увеличены отступы */
+    font-size: 1rem; /* Уменьшен размер шрифта до 1rem */
+    border-radius: 3px; /* Увеличен радиус границы */
+    border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Стили при фокусе на поле */
+input[type="tel"]:focus {
+    border-color: #66ccff;
+}
+
+/* Стили для обертки кнопки */
+.button-wrapper {
+    display: flex;
+    justify-content: center; /* Центрирование кнопки */
+    margin-top: 12px; /* Отступ сверху от других элементов */
+}
+
+/* Стили для кнопки */
+.send-button {
+    background-color: #66ccff;
+    color: #fff;
+    font-size: 1.5rem; /* Увеличен размер шрифта кнопки */
+    padding: 3px 6px; /* Увеличены отступы */
+    border: none;
+    border-radius: 3px; /* Увеличен радиус границы */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Эффект при наведении на кнопку */
+.send-button:hover {
+    background-color: #55a3cc;
+}
+
+/* Медиа-запросы для улучшения отображения на мобильных устройствах */
+@media (max-width: 768px) {
+    .content {
+        padding: 2rem; /* Увеличены отступы на мобильных устройствах */
+    }
+    
+    .item {
+        width: 90%; /* Ширина элементов на мобильных устройствах */
+    }
+    
+    input[type="tel"], .send-button {
+        width: 100%; /* Полная ширина для полей ввода и кнопок */
+    }
+}

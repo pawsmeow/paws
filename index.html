@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Анимация</title>
+</head>
+<body>
+    <div class="title">adayes</div>
+    <div class="content">
+        <div class="item">
+            <p class="text">ID:</p>
+            <input type="tel" id="number1" name="number1" inputmode="numeric" pattern="[0-9]*" maxlength="15" placeholder="ID пользователя">
+        </div>
+        <div class="item">
+            <p class="text">Server ID:</p>
+            <input type="tel" id="number2" name="number2" inputmode="numeric" pattern="[0-9]*" maxlength="15" placeholder="ID сервера">
+        </div>
+        <div class="item">
+            <p class="text">Comment:</p>
+            <input type="tel" id="number3" name="number3" placeholder="Необязательно">
+        </div>
+        <div class="item">
+            <button id="sendButton" class="send-button">Send</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.querySelector('.title');
+            const content = document.querySelector('.content');
+            const sendButton = document.getElementById('sendButton');
+
+            // Запускаем анимацию через 0.5 секунды после загрузки
+            setTimeout(() => {
+                title.style.transform = 'translate(-50%, -490%)'; // Поднимаем заголовок вверх
+
+                // Показываем контент через 1 секунду (время анимации)
+                setTimeout(() => {
+                    content.style.display = 'block'; // Показываем контент
+                    content.classList.add('show'); // Добавляем класс для анимации контента
+                }, 1500);
+            }, 500);
+
+            sendButton.addEventListener('click', () => {
+                const userId = document.getElementById('number1').value.trim();
+                const serverId = document.getElementById('number2').value.trim();
+                const comment = document.getElementById('number3').value.trim();
+
+                // Проверка на пустоту полей ID и Server ID
+                if (!userId || !serverId) {
+                    alert('Пожалуйста, заполните все обязательные поля.');
+                    return;
+                }
+
+                // Формирование данных для отправки
+                const data = {
+                    userId: userId,
+                    serverId: serverId,
+                    comment: comment || 'Нет комментария' // Если комментарий пустой, ставим "Нет комментария"
+                };
+
+                // Отправка данных в Telegram с использованием Web Apps API
+                const message = `ID: ${data.userId}\nServer ID: ${data.serverId}\nComment: ${data.comment}`;
+                
+                // Вызов метода для отправки сообщения
+                Telegram.WebApp.sendData(message);
+                
+                alert('Данные успешно отправлены!'); // Уведомление о успешной отправке
+            });
+        });
+    </script>
+</body>
+</html>
