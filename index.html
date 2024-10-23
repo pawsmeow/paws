@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выбор товара</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>  
     <div class="title">adayes</div>
@@ -12,7 +12,7 @@
     <div class="cards">
         <!-- Карточки товаров -->
         <div class="category">
-            <h2>Default.</h2>
+            <h2>Default</h2>
             <div class="card" data-type="Алмазный пропуск" data-price="800" id="card1">Алмазный пропуск — 800 тг</div>
             <div class="card" data-type="35 алмаз" data-price="300" id="card2">35 алмаз — 300 тг</div>
             <div class="card" data-type="88 алмаз" data-price="600" id="card3">88 алмаз — 600 тг</div>
@@ -29,7 +29,7 @@
         </div>
         
         <div class="category">
-            <h2>VIP.</h2>
+            <h2>VIP</h2>
             <div class="card" data-type="1065 алмаз" data-price="7000" id="card14">1065 алмаз — 7000 тг</div>
             <div class="card" data-type="1197 алмаз" data-price="8500" id="card15">1197 алмаз — 8500 тг</div>
             <div class="card" data-type="1420 алмаз" data-price="9300" id="card16">1420 алмаз — 9300 тг</div>
@@ -37,7 +37,7 @@
         </div>
         
         <div class="category">
-            <h2>LUX.</h2>
+            <h2>LUX</h2>
             <div class="card" data-type="2321 алмаз" data-price="15500" id="card18">2321 алмаз — 15500 тг</div>
             <div class="card" data-type="2615 алмаз" data-price="17500" id="card19">2615 алмаз — 17500 тг</div>
             <div class="card" data-type="2845 алмаз" data-price="18500" id="card20">2845 алмаз — 18500 тг</div>
@@ -46,7 +46,7 @@
         </div>
         
         <div class="category">
-            <h2>PREMIUM.</h2>
+            <h2>PREMIUM</h2>
             <div class="card" data-type="4265 алмаз" data-price="27500" id="card23">4265 алмаз — 27500 тг</div>
             <div class="card" data-type="4726 алмаз" data-price="31500" id="card24">4726 алмаз — 31500 тг</div>
             <div class="card" data-type="5690 алмаз" data-price="37500" id="card25">5690 алмаз — 37500 тг</div>
@@ -88,46 +88,86 @@
         let allPurshare = 0;
         let userId = 0;
         let comment = "";
+        let selectedCard = null;
+        let type = null;
+        let price = null;
+        let data;
         tg.expand();
+        const buyButton = document.getElementById("sendButton");
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Снимаем выделение с ранее выбранной карточки
+                if (selectedCard) {
+                    selectedCard.classList.remove('selected'); // Убираем класс выделения
+                }
 
-        buy.addEventListener("click", ()=> {
-            if(document.getElementById("number2").value.length > 0) {
-                serverId = document.getElementById("number2").value;
-            } else {
-                alert('Пожалуйста, Server ID.');
-                return;
-            }
-            if(document.getElementById("number1").value.length > 0) {
-                id = document.getElementById("number1").value;
-            } else {
-                alert('Пожалуйста, заполните ID');
-                return;
+                // Выделяем новую карточку
+                selectedCard = card; // Сохраняем ссылку на выбранную карточку
+                selectedCard.classList.add('selected'); // Добавляем класс выделения
 
+                // Показываем кнопку "Далее" только после выбора карточки
+                nextButton.style.display = 'block';
+            });
+        });
+        // Обработчик нажатия кнопки "Далее"
+        nextButton.addEventListener('click', () => {
+            if (selectedCard) {
+                // Показать контент и скрыть карточки
+                cards.style.display = 'none';
+                content.style.display = 'block';
+                backButton.style.display = 'block'; // Показываем кнопку "Назад"
+                nextButton.style.display = 'none'; // Скрываем кнопку "Далее"
             }
+        });
+        buyButton.addEventListener("click", () => {
+            // Получаем значения из полей ввода
+            serverId = document.getElementById("number2").value;
+            id = document.getElementById("number1").value;
             comment = document.getElementById("number3").value;
 
-            if(type == "Алмазный пропуск")
-            {
-                let data = {
-                id: id,
-                serverId: serverId,
-                comment: comment,
-                amount: type
+            // Проверка полей ввода
+            if (!serverId) {
+                alert('Пожалуйста, введите Server ID.');
+                return;
             }
-            }else{
-                amount = document.getElementById(price);
-                let data = {
-                id: id,
-                serverId: serverId,
-                comment: comment,
-                amount: amount
+            if (!id) {
+                alert('Пожалуйста, заполните ID.');
+                return;
+            }
+            if (!selectedCard) {
+                alert('Пожалуйста, выберите карточку.');
+                return;
             }
 
+            // Получаем данные о выбранной карточке
+            type = selectedCard.dataset.type;
+            price = selectedCard.dataset.price;
+            if(type == "Алмазный пропуск")
+            {
+                price = 800;
+                data = {
+                id: id,
+                serverId: serverId,
+                comment: comment,
+                type: "Алмазный пропуск",
+                price: price
+                
+            };
+            }else {
+                data = {
+                id: id,
+                serverId: serverId,
+                comment: comment,
+                price: price,
+                type: type
+
+                
             }
-            
+            }
+            alert("Данные отправлены: " + JSON.stringify(data)); // Проверка отправляемых данных
             tg.sendData(JSON.stringify(data));
             tg.close();
-        })
+        });
 
     </script>
 </body>
