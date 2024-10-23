@@ -23,9 +23,9 @@ document.querySelectorAll('.card').forEach(card => {
         }
 
         // Выделяем новую карточку
-        selectedCard = card;
-        type = selectedCard.dataset.type;
-        price = selectedCard.dataset.price;
+        let selectedCard = card;
+        let type = selectedCard.dataset.type;
+        let price = selectedCard.dataset.price;
         selectedCard.classList.add('selected');
 
         // Показываем кнопку "Далее" только после выбора карточки
