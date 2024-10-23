@@ -5,6 +5,14 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Deadly Advance';
+    src: url('Deadly Advance.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
     margin: 0;
     display: flex;
@@ -17,7 +25,7 @@ body {
 }
 
 .title {
-    font-family: 'Deadly Advance';
+    font-family: 'Deadly Advance', Arial, sans-serif; /* Arial и sans-serif как запасные варианты */
     color: #ffffff;
     font-size: 48px; /* Увеличен размер заголовка */
     position: absolute;
