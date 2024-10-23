@@ -27,6 +27,8 @@
         </div>
     </div>
     <script>
+        const webApp = Telegram.WebApp;
+
         document.addEventListener('DOMContentLoaded', () => {
             const title = document.querySelector('.title');
             const content = document.querySelector('.content');
@@ -42,32 +44,19 @@
                     content.classList.add('show'); // Добавляем класс для анимации контента
                 }, 1500);
             }, 500);
+            document.getElementById('sendButton').addEventListener('click', () => {
+                const id = document.getElementById('number1').value;
+                const serverId = document.getElementById('number2').value;
+                const comment = document.getElementById('number3').value;
 
-            sendButton.addEventListener('click', () => {
-                const userId = document.getElementById('number1').value.trim();
-                const serverId = document.getElementById('number2').value.trim();
-                const comment = document.getElementById('number3').value.trim();
-
-                // Проверка на пустоту полей ID и Server ID
-                if (!userId || !serverId) {
-                    alert('Пожалуйста, заполните все обязательные поля.');
+                // Проверка заполненности полей
+                if (!id || !serverId) {
+                    alert('Пожалуйста, заполните ID и Server ID.');
                     return;
                 }
 
-                // Формирование данных для отправки
-                const data = {
-                    userId: userId,
-                    serverId: serverId,
-                    comment: comment || 'Нет комментария' // Если комментарий пустой, ставим "Нет комментария"
-                };
-
-                // Отправка данных в Telegram с использованием Web Apps API
-                const message = `ID: ${data.userId}\nServer ID: ${data.serverId}\nComment: ${data.comment}`;
-                
-                // Вызов метода для отправки сообщения
-                Telegram.WebApp.sendData(message);
-                
-                alert('Данные успешно отправлены!'); // Уведомление о успешной отправке
+                // Логика для отправки данных в Telegram бот или другой обработчик
+                console.log(`ID: ${id}, Server ID: ${serverId}, Comment: ${comment}`);
             });
         });
     </script>
