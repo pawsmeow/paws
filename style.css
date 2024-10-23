@@ -12,118 +12,141 @@
     font-style: normal;
 }
 
-
 body {
     margin: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     background-color: #333;
-    overflow: hidden;
-    font-family: 'ImpactCustom';
+    overflow-y: auto; /* Позволяем прокрутку по вертикали */
+    font-family: sans-serif;
 }
 
 .title {
-    font-family: 'Deadly Advance', Arial, sans-serif; /* Arial и sans-serif как запасные варианты */
+    font-family: 'Deadly Advance', Arial, sans-serif;
     color: #ffffff;
-    font-size: 48px; /* Увеличен размер заголовка */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 1s ease-out;
+    font-size: 32px; /* Уменьшен размер заголовка для мобильных устройств */
+    margin-top: 20px;
 }
 
-/* Начальное состояние для контента */
-.content {
-    display: none;
-    position: relative;
-    opacity: 0;
-    transform: translateY(100px);
-    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 1.8rem; /* Увеличены отступы */
-    border-radius: 6px; /* Увеличен радиус границы */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Когда активна анимация, элемент поднимается вверх */
-.content.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(20px);
-}
-
-/* Стили для каждого элемента */
-.item {
-    margin: 6px 0; /* Увеличены отступы между элементами */
-    display: flex;
-    flex-direction: column; /* Вертикальное расположение элементов */
-    align-items: flex-start; /* Выровнять содержимое по левому краю */
-}
-
-/* Стили для текста */
-.text {
-    color: #fff;
-    font-size: 2.4rem; /* Увеличен размер текста */
-    margin-bottom: 6px; /* Отступ снизу от текста для пространства между текстом и полем ввода */
-}
-
-/* Стили для полей ввода */
-input[type="tel"] {
+/* Стили для контейнера с карточками */
+.cards {
     width: 100%;
-    max-width: 150px; /* Увеличена максимальная ширина поля */
-    padding: 3px; /* Увеличены отступы */
-    font-size: 1rem; /* Уменьшен размер шрифта до 1rem */
-    border-radius: 3px; /* Увеличен радиус границы */
+    max-width: 800px; /* Ограничение ширины контейнера с карточками */
+    padding: 10px; /* Уменьшены отступы внутри контейнера */
+}
+
+.category {
+    margin-bottom: 20px;
     border: 1px solid #fff;
-    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.category h2 {
+    color: #ffffff;
+    font-size: 20px; /* Уменьшен размер заголовка категории */
+    margin-bottom: 10px;
+}
+
+.card {
+    background-color: #444;
     color: #fff;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-/* Стили при фокусе на поле */
-input[type="tel"]:focus {
-    border-color: #66ccff;
-}
-
-/* Стили для обертки кнопки */
-.button-wrapper {
-    display: flex;
-    justify-content: center; /* Центрирование кнопки */
-    margin-top: 12px; /* Отступ сверху от других элементов */
-}
-
-/* Стили для кнопки */
-.send-button {
-    background-color: #66ccff;
-    color: #fff;
-    font-size: 1.5rem; /* Увеличен размер шрифта кнопки */
-    padding: 3px 6px; /* Увеличены отступы */
-    border: none;
-    border-radius: 3px; /* Увеличен радиус границы */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-/* Эффект при наведении на кнопку */
-.send-button:hover {
-    background-color: #55a3cc;
+.card:hover {
+    background-color: #555;
+}
+.send-button {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Медиа-запросы для улучшения отображения на мобильных устройствах */
-@media (max-width: 768px) {
-    .content {
-        padding: 2rem; /* Увеличены отступы на мобильных устройствах */
+.send-button:hover {
+    background-color: #555;
+}
+
+.card.selected {
+    border: 2px solid #ffcc00; /* Выделение выбранной карточки */
+}
+
+/* Стили для кнопок */
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.back-button,
+.next-button {
+    padding: 10px 15px; /* Уменьшены отступы для кнопок */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover,
+.next-button:hover {
+    background-color: #ffcc00; /* Цвет кнопки при наведении */
+}
+
+/* Стили для контента */
+.content {
+    display: none; /* Скрываем контент до перехода */
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Стили для полей ввода */
+.item {
+    margin-bottom: 10px;
+}
+
+.text {
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+input[type="tel"] {
+    width: 100%; /* Ширина поля ввода на 100% для мобильных */
+    padding: 10px; /* Отступ внутри поля ввода */
+    border: none;
+    border-radius: 5px;
+}
+
+/* Общее для мобильных устройств */
+@media (max-width: 600px) {
+    .title {
+        font-size: 24px; /* Уменьшен размер заголовка для маленьких экранов */
     }
-    
-    .item {
-        width: 90%; /* Ширина элементов на мобильных устройствах */
+
+    .category h2 {
+        font-size: 18px; /* Уменьшен размер заголовка категории для маленьких экранов */
     }
-    
-    input[type="tel"], .send-button {
-        width: 100%; /* Полная ширина для полей ввода и кнопок */
+
+    .card {
+        font-size: 14px; /* Уменьшен размер текста карточек для маленьких экранов */
     }
 }
