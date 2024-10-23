@@ -16,16 +16,23 @@ setTimeout(() => { // Поднимаем заголовок вверх
 
 // Обработчик кликов по карточкам
 document.querySelectorAll('.card').forEach(card => {
-    item.addEventListener('click', (event) => {
-        selectedCard = event.target;
+    card.addEventListener('click', () => {
+        // Снимаем выделение с ранее выбранной карточки
+        if (selectedCard) {
+            selectedCard.classList.remove('selected');
+        }
+
+        // Выделяем новую карточку
+        selectedCard = card;
         type = selectedCard.dataset.type;
         price = selectedCard.dataset.price;
-
-        // Подсветка выбранной карточки
-        document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
         selectedCard.classList.add('selected');
+
+        // Показываем кнопку "Далее" только после выбора карточки
+        nextButton.style.display = 'block';
     });
-    });
+});
+
 // Обработчик нажатия кнопки "Далее"
 nextButton.addEventListener('click', () => {
     if (selectedCard) {
