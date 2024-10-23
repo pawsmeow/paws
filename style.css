@@ -135,6 +135,12 @@ input[type="tel"] {
     border: none;
     border-radius: 5px;
 }
+.commentacard {
+    width: 90%; /* Ширина поля ввода на 100% для мобильных */
+    padding: 10px; /* Отступ внутри поля ввода */
+    border: none;
+    border-radius: 5px;
+}
 
 /* Общее для мобильных устройств */
 @media (max-width: 600px) {
