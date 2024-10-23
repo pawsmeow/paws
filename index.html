@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выбор товара</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>  
     <div class="title">adayes</div>
@@ -58,7 +58,7 @@
         <button id="backButton" class="back-button" style="display: none;">Назад</button>
         <button id="nextButton" class="next-button" style="display: none;">Далее</button>
     </div>
-
+    </div>
     <div class="content" style="display: none;">
         <div class="item">
             <p class="text">ID:</p>
@@ -70,12 +70,11 @@
         </div>
         <div class="item">
             <p class="text">Comment:</p>
-            <input id="number3" name="number3" placeholder="Необязательно" autocomplete="off">
+            <input class="commentacard" id="number3" name="number3" placeholder="Необязательно" autocomplete="off">
         </div>
         <div class="item">
             <button id="sendButton" class="send-button">Отправить данные</button>
         </div>
-    </div>
 
     <script src="script.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
