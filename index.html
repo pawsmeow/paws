@@ -10,24 +10,6 @@
     <div class="title">paws</div>
     
     <div class="cards">
-        <!-- Карточки товаров -->
-        <div class="category">
-            <h2>Default.</h2>
-            <div class="card" data-type="Алмазный пропуск" data-price="800" id="card1">Алмазный пропуск — 800 тг</div>
-            <div class="card" data-type="35" data-price="300" id="card2">35 алмаз — 300 тг</div>
-            <div class="card" data-type="88" data-price="600" id="card3">88 алмаз — 600 тг</div>
-            <div class="card" data-type="132" data-price="1000" id="card4">132 алмаз — 1000 тг</div>
-            <div class="card" data-type="167" data-price="1400" id="card5">167 алмаз — 1400 тг</div>
-            <div class="card" data-type="220" data-price="1700" id="card6">220 алмаз — 1700 тг</div>
-            <div class="card" data-type="264" data-price="1900" id="card7">264 алмаз — 1900 тг (не для фазы)</div>
-            <div class="card" data-type="299" data-price="2200" id="card8">299 алмаз — 2200 тг (для фазы)</div>
-            <div class="card" data-type="352" data-price="2700" id="card9">352 алмаз — 2700 тг</div>
-            <div class="card" data-type="440" data-price="3000" id="card10">440 алмаз — 3000 тг</div>
-            <div class="card" data-type="572" data-price="4000" id="card11">572 алмаз — 4000 тг</div>
-            <div class="card" data-type="734" data-price="5000" id="card12">734 алмаз — 5000 тг</div>
-            <div class="card" data-type="933" data-price="6000" id="card13">933 алмаз — 6000 тг</div>
-        </div>
-        
         <div class="category">
             <h2>VIP.</h2>
             <div class="card" data-type="1065" data-price="7000" id="card14">1065 алмаз — 7000 тг</div>
@@ -55,7 +37,7 @@
         
 
     <div class="button-wrapper">
-        <button id="backButton" class="back-button" style="display: none;">Назад</button>
+        
         <button id="nextButton" class="next-button" style="display: none;">Далее</button>
     </div>
     </div>
@@ -72,8 +54,10 @@
             <p class="text">Comment:</p>
             <input class="commentacard" id="number3" name="number3" placeholder="Необязательно" autocomplete="off">
         </div>
-        <div class="item">
-            <button id="sendButton" class="send-button">Отправить данные</button>
+        
+        <div class="item end" >
+            <button id="backButton" class="back-button" style="display: none;">Назад</button>
+            <button id="sendButton" class="send-button backButton">Отправить данные</button>
         </div>
 
     <script src="script.js"></script>
@@ -107,6 +91,10 @@
 
                 // Показываем кнопку "Далее" только после выбора карточки
                 nextButton.style.display = 'block';
+                const botElement = document.getElementById('nextButton');
+    if (botElement) {
+        botElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
             });
         });
         // Обработчик нажатия кнопки "Далее"

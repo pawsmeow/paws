@@ -65,17 +65,19 @@ body {
     background-color: #555;
 }
 .send-button {
-    background-color: #444;
-    color: #fff;
-    padding: 10px;
-    margin: 5px 0;
+    padding: 10px 15px; /* Уменьшены отступы для кнопок */
+    border: none;
     border-radius: 5px;
+    margin-left: 15px;
     cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
     transition: background-color 0.3s ease;
-}
+} 
 
-.send-button:hover {
-    background-color: #555;
+ .send-button:hover {
+    background-color: #1fd53e;
 }
 
 .card.selected {
@@ -92,7 +94,8 @@ body {
 }
 
 .back-button,
-.next-button {
+.next-button,
+.sendButton {
     padding: 10px 15px; /* Уменьшены отступы для кнопок */
     border: none;
     border-radius: 5px;
@@ -104,7 +107,8 @@ body {
 }
 
 .back-button:hover,
-.next-button:hover {
+.next-button:hover,
+.sendButton:hover {
     background-color: #ffcc00; /* Цвет кнопки при наведении */
 }
 
@@ -155,4 +159,8 @@ input[type="tel"] {
     .card {
         font-size: 14px; /* Уменьшен размер текста карточек для маленьких экранов */
     }
+}
+.end{
+    display: flex;
+    
 }
