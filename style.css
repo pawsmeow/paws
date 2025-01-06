@@ -11,7 +11,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
+h2{
+    margin-left: 20px;
+}
 body {
     margin: 0;
     display: flex;
@@ -30,13 +32,24 @@ body {
     font-size: 32px; /* Уменьшен размер заголовка для мобильных устройств */
     margin-top: 20px;
 }
-
+.element{
+    display: grid;
+    grid-template-columns: 12fr 1fr 1fr;
+}
 /* Стили для контейнера с карточками */
 .cards {
     width: 100%;
     max-width: 800px; /* Ограничение ширины контейнера с карточками */
     padding: 10px; /* Уменьшены отступы внутри контейнера */
 }
+.incrase,
+.discrease{
+    font-size: 20px;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+  }
 
 .category {
     margin-bottom: 20px;
@@ -50,8 +63,49 @@ body {
     font-size: 20px; /* Уменьшен размер заголовка категории */
     margin-bottom: 10px;
 }
-
-.card {
+.cart-items {
+    display: none; /* Скрыть корзину по умолчанию */
+    margin-top: 20px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #676854;
+    height: 50px;
+    margin-top: 10px;
+    width: 50px;
+    border-radius: 200%;
+    margin-left: 20%;
+}
+.baack-button{
+display: flex;
+justify-content: center;
+align-items: center;
+justify-content: center;
+height: auto;
+padding: 24px;
+min-height: unset;
+border-radius: 50px;
+background-color: #a9a8a8;
+margin: 30px auto;
+max-width: 599px;
+cursor: pointer;
+font-family: Poppins, Arial, Helvetica, sans-serif;
+font-size: 18px;
+color: #f5f6f6;
+font-weight: 700;
+}
+.preperator{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #444;
     color: #fff;
     padding: 10px;
@@ -59,8 +113,28 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-left: 10px;
 }
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-left: 10px;
 
+}
+.lolkek{
+    display: flex;
+}
 .card:hover {
     background-color: #555;
 }
@@ -77,7 +151,7 @@ body {
 } 
 
  .send-button:hover {
-    background-color: #1fd53e;
+    background-color: #ffcc00;
 }
 
 .card.selected {
@@ -134,13 +208,13 @@ body {
 }
 
 input[type="tel"] {
-    width: 90%; /* Ширина поля ввода на 100% для мобильных */
+    width: 60%; /* Ширина поля ввода на 100% для мобильных */
     padding: 10px; /* Отступ внутри поля ввода */
     border: none;
     border-radius: 5px;
 }
 .commentacard {
-    width: 90%; /* Ширина поля ввода на 100% для мобильных */
+    width: 60%; /* Ширина поля ввода на 100% для мобильных */
     padding: 10px; /* Отступ внутри поля ввода */
     border: none;
     border-radius: 5px;

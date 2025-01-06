@@ -7,39 +7,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>  
-    <div class="title">paws</div>
+    <div class="title">Gem Father</div>
     
     <div class="cards">
         <div class="category">
-            <h2>VIP.</h2>
-            <div class="card" data-type="1065" data-price="7000" id="card14">1065 алмаз — 7000 тг</div>
-            <div class="card" data-type="1197" data-price="8500" id="card15">1197 алмаз — 8500 тг</div>
-            <div class="card" data-type="1420" data-price="9300" id="card16">1420 алмаз — 9300 тг</div>
-            <div class="card" data-type="1881" data-price="12300" id="card17">1881 алмаз — 12300 тг</div>
+            <h2>Наборы.</h2>
+            <div class="wrapper">
+                <div class="card add-to-cart" data-type="933" data-price="5700" id="card14">933 алмаз<div class="lol">—</div><div class="lol">5700 тг</div></div>
+                <div class="card add-to-cart" data-type="1410" data-price="8600" id="card15">1410 алмаз<div class="lol">—</div><div class="lol">8600 тг</div></div>
+                <div class="card add-to-cart" data-type="1881" data-price="11500" id="card16">1881 алмаз<div class="lol">—</div><div class="lol">11500 тг</div></div>
+                <div class="card add-to-cart" data-type="2845" data-price="17000" id="card17">2845 алмаз<div class="lol">—</div><div class="lol">17000 тг</div></div>
+                <div class="card add-to-cart" data-type="6163" data-price="37000" id="card18">6163 алмаз<div class="lol">—</div><div class="lol">37000 тг</div></div>
+                    
+            </div>
         </div>
         
         <div class="category">
-            <h2>LUX.</h2>
-            <div class="card" data-type="2321" data-price="15500" id="card18">2321 алмаз — 15500 тг</div>
-            <div class="card" data-type="2615" data-price="17500" id="card19">2615 алмаз — 17500 тг</div>
-            <div class="card" data-type="2845" data-price="18500" id="card20">2845 алмаз — 18500 тг</div>
-            <div class="card" data-type="3285" data-price="22500" id="card21">3285 алмаз — 22500 тг</div>
-            <div class="card" data-type="3778" data-price="25000" id="card22">3778 алмаз — 25000 тг</div>
-        </div>
-        
-        <div class="category">
-            <h2>PREMIUM.</h2>
-            <div class="card" data-type="4265" data-price="27500" id="card23">4265 алмаз — 27500 тг</div>
-            <div class="card" data-type="4726" data-price="31500" id="card24">4726 алмаз — 31500 тг</div>
-            <div class="card" data-type="5690" data-price="37500" id="card25">5690 алмаз — 37500 тг</div>
-            <div class="card" data-type="6163" data-price="39000" id="card26">6163 алмаз — 39000 тг</div>
-        </div>
-        
+                <div class="lolkek">
+                    <h2>Корзина:</h2>
+                    <h2 class="diam" id="diam">0</h2>
+                    <h2>Алмазов</h2>
+                    <h2 class="summary" id="summary">0</h2>
+                    <h2>Тенге.</h2>
+                </div>
+                <div id="cart-items" class="cart-items"></div>
+                <button id="nextButton" class="baack-button" style="display: none;">Купить</button>
 
-    <div class="button-wrapper">
-        
-        <button id="nextButton" class="next-button" style="display: none;">Далее</button>
-    </div>
+            </div>  
     </div>
     <div class="content" style="display: none;">
         <div class="item">
@@ -63,35 +57,38 @@
     <script src="script.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        let tg = window.Telegram.WebApp;
-        let buy = document.getElementById("sendButton");
-        let amount = 0;
-        let id = 0;
-        let serverId = 0;
-        let monthlyPurshare = 0;
-        let allPurshare = 0;
-        let userId = 0;
-        let comment = "";
-        let selectedCard = null;
-        let type = null;
-        let price = null;
-        let data;
-        tg.expand();
-        const buyButton = document.getElementById("sendButton");
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                // Снимаем выделение с ранее выбранной карточки
-                if (selectedCard) {
-                    selectedCard.classList.remove('selected'); // Убираем класс выделения
-                }
+    let tg = window.Telegram.WebApp;
+    let buy = document.getElementById("sendButton");
+    let amount = 0;
+    let id = 0;
+    let serverId = 0;
+    let monthlyPurshare = 0;
+    let allPurshare = 0;
+    let userId = 0;
+    let comment = "";
+    let selectedCard = null;
+    let type = null;
+    let price = null;
+    let data;
+    const diam = document.getElementById("diam");
+    const summary = document.getElementById("summary");
+    
+    tg.expand();
+    const buyButton = document.getElementById("sendButton");
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            // Снимаем выделение с ранее выбранной карточки
+            if (selectedCard) {
+                selectedCard.classList.remove('selected'); // Убираем класс выделения
+            }
 
-                // Выделяем новую карточку
-                selectedCard = card; // Сохраняем ссылку на выбранную карточку
-                selectedCard.classList.add('selected'); // Добавляем класс выделения
+            // Выделяем новую карточку
+            selectedCard = card; // Сохраняем ссылку на выбранную карточку
+            selectedCard.classList.add('selected'); // Добавляем класс выделения
 
-                // Показываем кнопку "Далее" только после выбора карточки
-                nextButton.style.display = 'block';
-                const botElement = document.getElementById('nextButton');
+            // Показываем кнопку "Далее" только после выбора карточки
+            nextButton.style.display = 'block';
+            const botElement = document.getElementById('nextButton');
     if (botElement) {
         botElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -126,10 +123,11 @@
                 alert('Пожалуйста, выберите карточку.');
                 return;
             }
+            
+            
 
-            // Получаем данные о выбранной карточке
-            type = selectedCard.dataset.type;
-            price = selectedCard.dataset.price;
+            type = diam.textContent;
+            price = summary.textContent;
             if(type == "Алмазный пропуск")
             {
                 price = 800;
